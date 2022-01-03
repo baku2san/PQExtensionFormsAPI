@@ -1,7 +1,7 @@
 # PQExtensionFormsAPI
 Power Query Custom Connector to retreive Microsoft Forms responses by FormUrl
 
-# purpopse
+# purpose
 To analyze Microsoft Forms Responses by Power BI
 
 # Qiita in Japanese  
