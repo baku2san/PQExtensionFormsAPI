@@ -78,13 +78,35 @@ in
 
 PQExtensionFormsAPIType = type function (
     message as (type text meta [
-        Documentation.FieldCaption = "forms Url",
+        Documentation.FieldCaption = "Forms Url",
         Documentation.FieldDescription = "Text, 解析したい Forms の URL",
-        Documentation.SampleValues = {"https://forms.office.com/Pages/DesignPage.aspx?lang=ja&origin=OfficeDotCom&route=Start#FormId=Ylunxf9LlkynIGYhzpl45X6btOKMGSpAhfdw3zJ9jQ1UNDdIVlZXN1JKSlNXVENEOU43RU9TSlJCNSQlQCN0PWcu"}
+        Documentation.SampleValues = {"https://forms.office.com/Pages/DesignPage.aspx?route=Start#FormId=Ylunxf9LlkynIGYhzpl45X6btOKMGSpAhfdw3zJ9jQ1UNDdIVlZXN1JKSlNXVENEOU43RU9TSlJCNSQlQCN0PWcu"}
     ]))
     as list meta [
         Documentation.Name = "Forms API の解析",
-        Documentation.LongDescription = "解析したい Forms API の URL をコピーして見ましょう。"
+        Documentation.LongDescription = "解析したい Forms API の URL をコピーして見ましょう。",
+        Documentation.Examples = {[
+            Description = "Returns error message with invalid Forms URL not including FormsId",
+            Code = "PQExtensionFormsAPI.Contents(""invalid url"")",
+            Result = "{ ""URL に ""FormId="" が含まれていませんでした。""}"
+        ],[
+            Description = "Returns valid responses!",
+            Code = "PQExtensionFormsAPI.Contents(""https://forms.office.com/Pages/DesignPage.aspx?lang=ja&origin=OfficeDotCom&route=Start#FormId=Ylunxf9LlkynIGYhzpl45X6btOKMGSpAhfdw3zJ9jQ1UNDdIVlZXN1JKSlNXVENEOU43RU9TSlJCNSQlQCN0PWcu"")",
+            Result = "{ [
+                id = 1,
+                startDate = ""2020-09-16T02:04:08.5515779Z"",
+                submitDate = ""2020-09-16T02:04:08.5515779Z"",
+                responder = ""responder@hoge.onmicrosoft.com"",
+                responderName = ""responderName"",
+                answers = ""[{""answer1"":""回答だよ"",""questionId"":""r9fb6fe72246141c1a635db431345b17b""}]"",
+                releaseDate = ""0001-01-01T00:00:00Z"",
+                quizResult = null,
+                emailReceiptConsent = null,
+                submitLanguage = null,
+                msRewardsData = null,
+                FormsProData = null
+            ]}"
+        ]}
     ];
 
 PQExtensionFormsAPIImpl = (formsUrl as text) =>
